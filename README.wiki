@@ -1,8 +1,10 @@
 = bmap =
 
-== Simple Bitmap library in C ==
+Simple Bitmap library in C
 
-=== Building ===
+----------------------------------------------------------------------
+
+== Building ==
 Try:
 * make
 * make libbmap
@@ -10,9 +12,8 @@ Try:
 * make tests
 * make runtest
 
-=== Usage ===
-{{{
-#include "bmap.h"
+== Usage ==
+{{{#include "bmap.h"
 
 BMAP* bm = BMap.New( 35 );
 BMap.set( bm, 6 );
@@ -21,5 +22,4 @@ if( BMap.check( bm, 7 ) )
 {
    /* ... */
 }
-BMap.free( bm );
-}}}
+BMap.free( bm );}}}
