@@ -22,4 +22,4 @@ Include '''bmap.h'''
  {
     /* ... */
  }
- BMap.free( bm );}}}
+ BMap.free( bm );
