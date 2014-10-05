@@ -13,15 +13,13 @@ Try:
 * make runtest
 
 == Usage ==
-<code>
-#include "bmap.h"
-
-BMAP* bm = BMap.New( 35 );
-BMap.set( bm, 6 );
-BMap.clear( bm, 5 );
-if( BMap.check( bm, 7 ) )
-{
-   /* ... */
-}
-BMap.free( bm );}}}
-</code>
+ #include "bmap.h"
+ 
+ BMAP* bm = BMap.New( 35 );
+ BMap.set( bm, 6 );
+ BMap.clear( bm, 5 );
+ if( BMap.check( bm, 7 ) )
+ {
+    /* ... */
+ }
+ BMap.free( bm );}}}
