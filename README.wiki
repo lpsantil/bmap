@@ -11,7 +11,7 @@ Try:
 * make runtest
 
 === Usage ===
-```C
+{{{
 #include "bmap.h"
 
 BMAP* bm = BMap.New( 35 );
@@ -22,4 +22,4 @@ if( BMap.check( bm, 7 ) )
    /* ... */
 }
 BMap.free( bm );
-```
+}}}
