@@ -5,7 +5,7 @@ CFLAGS = -Os -Wall -ansi -pedantic
 LDFLAGS = -s
 DD = docs
 DSRC = docs
-SRC = $(shell ls src/*.c)
+#SRC = $(shell ls src/*.c)
 HDR = bmap.h
 IDIR = inc
 INC = $(IDIR)/$(HDR)
@@ -14,7 +14,7 @@ EDIR = .
 EXE =
 LNK = bmap
 LDIR = .
-#LSRC = $(shell ls lib/*.c)
+LSRC = $(shell ls lib/*.c)
 LOBJ = $(LSRC:.c=.o)
 LIB = $(LDIR)/lib$(LNK).a
 TDIR = t
