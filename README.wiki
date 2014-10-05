@@ -13,7 +13,7 @@ Try:
 * make runtest
 
 == Usage ==
- #include "bmap.h"
+Include '''bmap.h'''
  
  BMAP* bm = BMap.New( 35 );
  BMap.set( bm, 6 );
