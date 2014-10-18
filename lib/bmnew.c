@@ -11,7 +11,7 @@ BMAP* BMap_New( unsigned int bits )
    assert( adjBits != 0 );
    assert( ( adjBits % BMAP_DEFAULT_ALIGNMENT ) == 0 );
 
-   bytes = adjBits / ( 8 * sizeof( unsigned char ) );
+   bytes = BMAP_DEFAULT_ALIGNMENT * adjBits;
 
    ret = ( BMAP* )( calloc( 1, sizeof( BMAP ) ) );
 

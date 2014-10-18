@@ -30,13 +30,13 @@ typedef struct
    bool ( *check )( BMAP* bm, unsigned int idx );
 } BMAP_Class;
 
-extern unsigned int BMAP_CEIL_SIZE( unsigned int bits );
+unsigned int BMAP_CEIL_SIZE( unsigned int bits );
 
-extern BMAP* BMap_New( unsigned int bits );
-extern void BMap_free( BMAP* bm );
-extern void BMap_set( BMAP* bm, unsigned int idx );
-extern void BMap_clear( BMAP* bm, unsigned int idx );
-extern bool BMap_check( BMAP* bm, unsigned int idx );
+BMAP* BMap_New( unsigned int bits );
+void BMap_free( BMAP* bm );
+void BMap_set( BMAP* bm, unsigned int idx );
+void BMap_clear( BMAP* bm, unsigned int idx );
+bool BMap_check( BMAP* bm, unsigned int idx );
 
 extern BMAP_Class BMap;
 
