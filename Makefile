@@ -3,13 +3,13 @@ PREFIX ?= /usr/local
 
 CFLAGS = -Os -Wall -ansi -pedantic
 LDFLAGS = -s
-DD = docs
+DDIR = docs
 DSRC = docs
 #SRC = $(shell ls src/*.c)
+OBJ = $(SRC:.c=.o)
 HDR = bmap.h
 IDIR = inc
 INC = $(IDIR)/$(HDR)
-OBJ = $(SRC:.c=.o)
 EDIR = .
 EXE =
 LNK = bmap
@@ -21,6 +21,10 @@ TDIR = t
 TSRC = $(shell ls t/*.c)
 TOBJ = $(TSRC:.c=.o)
 TEXE = $(TOBJ:.o=.exe)
+
+TMPCI = $(shell cat tmp.ci.pid)
+TMPCT = $(shell cat tmp.ct.pid)
+TMPCD = $(shell cat tmp.cd.pid)
 
 .c.o:
 	$(CC) $(CFLAGS) -I$(IDIR) -c $< -o $@
@@ -35,7 +39,7 @@ $(LIB): $(LOBJ)
 	$(AR) -rcs $@ $^
 
 $(EXE): $(OBJ)
-	$(CC) $^ -L$(LDIR) -l$(LNK) $(LDFLAGS) -o $(EDIR)/$@
+	$(CC) $< -L$(LDIR) -l$(LNK) $(LDFLAGS) -o $(EDIR)/$@
 
 t/%.exe: t/%.o
 	$(CC) $< -L$(LDIR) -l$(LNK) $(LDFLAGS) -o $@
@@ -48,6 +52,24 @@ $(TEXE): $(TOBJ)
 
 runtest: $(TEXE)
 	for T in $^ ; do $$T ; done
+
+start_ci:
+	watch make clean all & echo $$! > tmp.ci.pid && fg 1
+
+stop_ci:
+	kill -9 $(TMPCI)
+
+start_ct:
+	watch -n 1 make test & echo $$! > tmp.ct.pid && fg 1
+
+stop_ct:
+	kill -9 $(TMPCT)
+
+start_cd:
+	watch -n 1 make install & echo $$! > tmp.cd.pid && fg 1
+
+stop_cd:
+	kill -9 $(TMPCD)
 
 clean:
 	rm -f $(OBJ) $(EXE) $(LOBJ) $(LIB) $(TOBJ) $(TEXE)
@@ -63,20 +85,24 @@ showconfig:
 	@echo "PREFIX="$(PREFIX)
 	@echo "CFLAGS="$(CFLAGS)
 	@echo "LDFLAGS="$(LDFLAGS)
-	@echo "DD="$(DD)
-	@echo "DS="$(DS)
+	@echo "DDIR="$(DDIR)
+	@echo "DSRC="$(DSRC)
 	@echo "SRC="$(SRC)
+	@echo "OBJ="$(OBJ)
 	@echo "HDR="$(HDR)
 	@echo "IDIR="$(IDIR)
 	@echo "INC="$(INC)
-	@echo "DO="$(DO)
-	@echo "OBJ="$(OBJ)
-	@echo "LDIR="$(LDIR)
-	@echo "LNK="$(LNK)
-	@echo "LIB="$(LIB)
 	@echo "EDIR="$(EDIR)
 	@echo "EXE="$(EXE)
+	@echo "LDIR="$(LDIR)
+	@echo "LSRC="$(LSRC)
+	@echo "LOBJ="$(LOBJ)
+	@echo "LNK="$(LNK)
+	@echo "LIB="$(LIB)
 	@echo "TSRC="$(TSRC)
 	@echo "TOBJ="$(TOBJ)
 	@echo "TEXE="$(TEXE)
+	@echo "TMPCI="$(TMPCI)
+	@echo "TMPCT="$(TMPCT)
+	@echo "TMPCD="$(TMPCD)
 
