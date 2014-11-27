@@ -54,19 +54,19 @@ runtest: $(TEXE)
 	for T in $^ ; do $$T ; done
 
 start_ci:
-	watch make clean all & echo $$! > tmp.ci.pid && fg 1
+	watch time -p make clean all & echo $$! > tmp.ci.pid && fg 1
 
 stop_ci:
 	kill -9 $(TMPCI)
 
 start_ct:
-	watch -n 1 make test & echo $$! > tmp.ct.pid && fg 1
+	watch time -p make test & echo $$! > tmp.ct.pid && fg 1
 
 stop_ct:
 	kill -9 $(TMPCT)
 
 start_cd:
-	watch -n 1 make install & echo $$! > tmp.cd.pid && fg 1
+	watch time -p make install & echo $$! > tmp.cd.pid && fg 1
 
 stop_cd:
 	kill -9 $(TMPCD)
