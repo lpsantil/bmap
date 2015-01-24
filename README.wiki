@@ -23,3 +23,5 @@ Include '''bmap.h'''
     /* ... */
  }
  BMap.free( bm );
+
+Link with '''libbmap.a'''
